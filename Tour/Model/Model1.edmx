@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanlyTourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHIPHI">
+          <Key>
+            <PropertyRef Name="ChiPhi_ID" />
+          </Key>
+          <Property Name="ChiPhi_ID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MaDOANDL" Type="char" MaxLength="10" />
+          <Property Name="ChiPhi_TongCong" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="CHITIET">
+          <Key>
+            <PropertyRef Name="IDCHITIET" />
+          </Key>
+          <Property Name="IDCHITIET" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MaTour" Type="char" MaxLength="10" />
+          <Property Name="MaDiaDiem" Type="char" MaxLength="10" />
+          <Property Name="thutu" Type="int" />
+        </EntityType>
+        <EntityType Name="DIADIEM">
+          <Key>
+            <PropertyRef Name="MaDiaDiem" />
+          </Key>
+          <Property Name="MaDiaDiem" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TenDiaDiem" Type="nvarchar" MaxLength="50" />
+          <Property Name="DD_MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DOANDL">
+          <Key>
+            <PropertyRef Name="MaDOANDL" />
+          </Key>
+          <Property Name="MaDOANDL" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NgayKhoiHanh" Type="date" />
+          <Property Name="NgayKetThuc" Type="date" />
+          <Property Name="MaKH" Type="char" MaxLength="10" />
+          <Property Name="MaNV" Type="char" MaxLength="10" />
+          <Property Name="MaTour" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="GIATOUR">
+          <Key>
+            <PropertyRef Name="IDGIATOUR" />
+          </Key>
+          <Property Name="IDGIATOUR" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TGBatDau" Type="date" />
+          <Property Name="TGKetThuc" Type="date" />
+          <Property Name="ThanhTien" Type="int" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KH_NgaySinh" Type="date" />
+          <Property Name="KH_DiaChi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KH_SoDienThoai" Type="int" />
+          <Property Name="KH_GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="KH_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="KH_CMND" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LOAIHINHDULICH">
+          <Key>
+            <PropertyRef Name="MaLoaiHinh" />
+          </Key>
+          <Property Name="MaLoaiHinh" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TenLoaiHinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="LH_MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TenNv" Type="nvarchar" MaxLength="50" />
+          <Property Name="NV_NgaySinh" Type="date" />
+          <Property Name="NV_SoDienThoai" Type="int" />
+          <Property Name="NV_NhiemVu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TOURDULICH">
+          <Key>
+            <PropertyRef Name="MaTour" />
+          </Key>
+          <Property Name="MaTour" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TenTour" Type="nvarchar" MaxLength="50" />
+          <Property Name="DacDiem" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDGiaTour" Type="char" MaxLength="10" />
+          <Property Name="MaDOANDL" Type="char" MaxLength="10" />
+          <Property Name="MaLoaiHinh" Type="char" MaxLength="10" />
+          <Property Name="MaDiaDiem" Type="char" MaxLength="10" />
+        </EntityType>
+        <Association Name="fk_IDGIATOUR">
+          <End Role="GIATOUR" Type="Self.GIATOUR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIATOUR">
+              <PropertyRef Name="IDGIATOUR" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="IDGiaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaDiaDiem">
+          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIADIEM">
+              <PropertyRef Name="MaDiaDiem" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="MaDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaDiaDiem_chitiet">
+          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
+          <End Role="CHITIET" Type="Self.CHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIADIEM">
+              <PropertyRef Name="MaDiaDiem" />
+            </Principal>
+            <Dependent Role="CHITIET">
+              <PropertyRef Name="MaDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaKhachHang">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaLoaiHinh">
+          <End Role="LOAIHINHDULICH" Type="Self.LOAIHINHDULICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIHINHDULICH">
+              <PropertyRef Name="MaLoaiHinh" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="MaLoaiHinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaNhanVien">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaTour">
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOURDULICH">
+              <PropertyRef Name="MaTour" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaTour_chitiet">
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="0..1" />
+          <End Role="CHITIET" Type="Self.CHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOURDULICH">
+              <PropertyRef Name="MaTour" />
+            </Principal>
+            <Dependent Role="CHITIET">
+              <PropertyRef Name="MaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanlyTourModelStoreContainer">
+          <EntitySet Name="CHIPHI" EntityType="Self.CHIPHI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIET" EntityType="Self.CHITIET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIADIEM" EntityType="Self.DIADIEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOANDL" EntityType="Self.DOANDL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIATOUR" EntityType="Self.GIATOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAIHINHDULICH" EntityType="Self.LOAIHINHDULICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOURDULICH" EntityType="Self.TOURDULICH" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_IDGIATOUR" Association="Self.fk_IDGIATOUR">
+            <End Role="GIATOUR" EntitySet="GIATOUR" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaDiaDiem" Association="Self.fk_MaDiaDiem">
+            <End Role="DIADIEM" EntitySet="DIADIEM" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaDiaDiem_chitiet" Association="Self.fk_MaDiaDiem_chitiet">
+            <End Role="DIADIEM" EntitySet="DIADIEM" />
+            <End Role="CHITIET" EntitySet="CHITIET" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaKhachHang" Association="Self.fk_MaKhachHang">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DOANDL" EntitySet="DOANDL" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaLoaiHinh" Association="Self.fk_MaLoaiHinh">
+            <End Role="LOAIHINHDULICH" EntitySet="LOAIHINHDULICH" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICH" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaNhanVien" Association="Self.fk_MaNhanVien">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="DOANDL" EntitySet="DOANDL" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaTour" Association="Self.fk_MaTour">
+            <End Role="TOURDULICH" EntitySet="TOURDULICH" />
+            <End Role="DOANDL" EntitySet="DOANDL" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaTour_chitiet" Association="Self.fk_MaTour_chitiet">
+            <End Role="TOURDULICH" EntitySet="TOURDULICH" />
+            <End Role="CHITIET" EntitySet="CHITIET" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanlyTourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHIPHI">
+          <Key>
+            <PropertyRef Name="ChiPhi_ID" />
+          </Key>
+          <Property Name="ChiPhi_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MaDOANDL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ChiPhi_TongCong" Type="Decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="CHITIET">
+          <Key>
+            <PropertyRef Name="IDCHITIET" />
+          </Key>
+          <Property Name="IDCHITIET" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MaTour" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaDiaDiem" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="thutu" Type="Int32" />
+          <NavigationProperty Name="DIADIEM" Relationship="Self.fk_MaDiaDiem_chitiet" FromRole="CHITIET" ToRole="DIADIEM" />
+          <NavigationProperty Name="TOURDULICH" Relationship="Self.fk_MaTour_chitiet" FromRole="CHITIET" ToRole="TOURDULICH" />
+        </EntityType>
+        <EntityType Name="DIADIEM">
+          <Key>
+            <PropertyRef Name="MaDiaDiem" />
+          </Key>
+          <Property Name="MaDiaDiem" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenDiaDiem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DD_MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHITIETs" Relationship="Self.fk_MaDiaDiem_chitiet" FromRole="DIADIEM" ToRole="CHITIET" />
+          <NavigationProperty Name="TOURDULICHes" Relationship="Self.fk_MaDiaDiem" FromRole="DIADIEM" ToRole="TOURDULICH" />
+        </EntityType>
+        <EntityType Name="DOANDL">
+          <Key>
+            <PropertyRef Name="MaDOANDL" />
+          </Key>
+          <Property Name="MaDOANDL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NgayKhoiHanh" Type="DateTime" Precision="0" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaTour" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.fk_MaKhachHang" FromRole="DOANDL" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk_MaNhanVien" FromRole="DOANDL" ToRole="NHANVIEN" />
+          <NavigationProperty Name="TOURDULICH" Relationship="Self.fk_MaTour" FromRole="DOANDL" ToRole="TOURDULICH" />
+        </EntityType>
+        <EntityType Name="GIATOUR">
+          <Key>
+            <PropertyRef Name="IDGIATOUR" />
+          </Key>
+          <Property Name="IDGIATOUR" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TGBatDau" Type="DateTime" Precision="0" />
+          <Property Name="TGKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="ThanhTien" Type="Int32" />
+          <NavigationProperty Name="TOURDULICHes" Relationship="Self.fk_IDGIATOUR" FromRole="GIATOUR" ToRole="TOURDULICH" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KH_NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="KH_DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KH_SoDienThoai" Type="Int32" />
+          <Property Name="KH_GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="KH_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KH_CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOANDLs" Relationship="Self.fk_MaKhachHang" FromRole="KHACHHANG" ToRole="DOANDL" />
+        </EntityType>
+        <EntityType Name="LOAIHINHDULICH">
+          <Key>
+            <PropertyRef Name="MaLoaiHinh" />
+          </Key>
+          <Property Name="MaLoaiHinh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenLoaiHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LH_MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TOURDULICHes" Relationship="Self.fk_MaLoaiHinh" FromRole="LOAIHINHDULICH" ToRole="TOURDULICH" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MaNV" />
+          </Key>
+          <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenNv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NV_NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="NV_SoDienThoai" Type="Int32" />
+          <Property Name="NV_NhiemVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOANDLs" Relationship="Self.fk_MaNhanVien" FromRole="NHANVIEN" ToRole="DOANDL" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TOURDULICH">
+          <Key>
+            <PropertyRef Name="MaTour" />
+          </Key>
+          <Property Name="MaTour" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenTour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DacDiem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDGiaTour" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaDOANDL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaLoaiHinh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaDiaDiem" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="CHITIETs" Relationship="Self.fk_MaTour_chitiet" FromRole="TOURDULICH" ToRole="CHITIET" />
+          <NavigationProperty Name="DIADIEM" Relationship="Self.fk_MaDiaDiem" FromRole="TOURDULICH" ToRole="DIADIEM" />
+          <NavigationProperty Name="DOANDLs" Relationship="Self.fk_MaTour" FromRole="TOURDULICH" ToRole="DOANDL" />
+          <NavigationProperty Name="GIATOUR" Relationship="Self.fk_IDGIATOUR" FromRole="TOURDULICH" ToRole="GIATOUR" />
+          <NavigationProperty Name="LOAIHINHDULICH" Relationship="Self.fk_MaLoaiHinh" FromRole="TOURDULICH" ToRole="LOAIHINHDULICH" />
+        </EntityType>
+        <Association Name="fk_MaDiaDiem_chitiet">
+          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
+          <End Role="CHITIET" Type="Self.CHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIADIEM">
+              <PropertyRef Name="MaDiaDiem" />
+            </Principal>
+            <Dependent Role="CHITIET">
+              <PropertyRef Name="MaDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaTour_chitiet">
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="0..1" />
+          <End Role="CHITIET" Type="Self.CHITIET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOURDULICH">
+              <PropertyRef Name="MaTour" />
+            </Principal>
+            <Dependent Role="CHITIET">
+              <PropertyRef Name="MaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaDiaDiem">
+          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIADIEM">
+              <PropertyRef Name="MaDiaDiem" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="MaDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaKhachHang">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaNhanVien">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaTour">
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DOANDL" Type="Self.DOANDL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOURDULICH">
+              <PropertyRef Name="MaTour" />
+            </Principal>
+            <Dependent Role="DOANDL">
+              <PropertyRef Name="MaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_IDGIATOUR">
+          <End Role="GIATOUR" Type="Self.GIATOUR" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIATOUR">
+              <PropertyRef Name="IDGIATOUR" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="IDGiaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MaLoaiHinh">
+          <End Role="LOAIHINHDULICH" Type="Self.LOAIHINHDULICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TOURDULICH" Type="Self.TOURDULICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIHINHDULICH">
+              <PropertyRef Name="MaLoaiHinh" />
+            </Principal>
+            <Dependent Role="TOURDULICH">
+              <PropertyRef Name="MaLoaiHinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanlyTourEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHIPHIs" EntityType="Self.CHIPHI" />
+          <EntitySet Name="CHITIETs" EntityType="Self.CHITIET" />
+          <EntitySet Name="DIADIEMs" EntityType="Self.DIADIEM" />
+          <EntitySet Name="DOANDLs" EntityType="Self.DOANDL" />
+          <EntitySet Name="GIATOURs" EntityType="Self.GIATOUR" />
+          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+          <EntitySet Name="LOAIHINHDULICHes" EntityType="Self.LOAIHINHDULICH" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TOURDULICHes" EntityType="Self.TOURDULICH" />
+          <AssociationSet Name="fk_MaDiaDiem_chitiet" Association="Self.fk_MaDiaDiem_chitiet">
+            <End Role="DIADIEM" EntitySet="DIADIEMs" />
+            <End Role="CHITIET" EntitySet="CHITIETs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaTour_chitiet" Association="Self.fk_MaTour_chitiet">
+            <End Role="TOURDULICH" EntitySet="TOURDULICHes" />
+            <End Role="CHITIET" EntitySet="CHITIETs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaDiaDiem" Association="Self.fk_MaDiaDiem">
+            <End Role="DIADIEM" EntitySet="DIADIEMs" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICHes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaKhachHang" Association="Self.fk_MaKhachHang">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DOANDL" EntitySet="DOANDLs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaNhanVien" Association="Self.fk_MaNhanVien">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="DOANDL" EntitySet="DOANDLs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaTour" Association="Self.fk_MaTour">
+            <End Role="TOURDULICH" EntitySet="TOURDULICHes" />
+            <End Role="DOANDL" EntitySet="DOANDLs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_IDGIATOUR" Association="Self.fk_IDGIATOUR">
+            <End Role="GIATOUR" EntitySet="GIATOURs" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICHes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MaLoaiHinh" Association="Self.fk_MaLoaiHinh">
+            <End Role="LOAIHINHDULICH" EntitySet="LOAIHINHDULICHes" />
+            <End Role="TOURDULICH" EntitySet="TOURDULICHes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanlyTourModelStoreContainer" CdmEntityContainer="QuanlyTourEntities1">
+          <EntitySetMapping Name="CHIPHIs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.CHIPHI">
+              <MappingFragment StoreEntitySet="CHIPHI">
+                <ScalarProperty Name="ChiPhi_ID" ColumnName="ChiPhi_ID" />
+                <ScalarProperty Name="MaDOANDL" ColumnName="MaDOANDL" />
+                <ScalarProperty Name="ChiPhi_TongCong" ColumnName="ChiPhi_TongCong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.CHITIET">
+              <MappingFragment StoreEntitySet="CHITIET">
+                <ScalarProperty Name="IDCHITIET" ColumnName="IDCHITIET" />
+                <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+                <ScalarProperty Name="MaDiaDiem" ColumnName="MaDiaDiem" />
+                <ScalarProperty Name="thutu" ColumnName="thutu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIADIEMs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.DIADIEM">
+              <MappingFragment StoreEntitySet="DIADIEM">
+                <ScalarProperty Name="MaDiaDiem" ColumnName="MaDiaDiem" />
+                <ScalarProperty Name="TenDiaDiem" ColumnName="TenDiaDiem" />
+                <ScalarProperty Name="DD_MoTa" ColumnName="DD_MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOANDLs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.DOANDL">
+              <MappingFragment StoreEntitySet="DOANDL">
+                <ScalarProperty Name="MaDOANDL" ColumnName="MaDOANDL" />
+                <ScalarProperty Name="NgayKhoiHanh" ColumnName="NgayKhoiHanh" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIATOURs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.GIATOUR">
+              <MappingFragment StoreEntitySet="GIATOUR">
+                <ScalarProperty Name="IDGIATOUR" ColumnName="IDGIATOUR" />
+                <ScalarProperty Name="TGBatDau" ColumnName="TGBatDau" />
+                <ScalarProperty Name="TGKetThuc" ColumnName="TGKetThuc" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="KH_NgaySinh" ColumnName="KH_NgaySinh" />
+                <ScalarProperty Name="KH_DiaChi" ColumnName="KH_DiaChi" />
+                <ScalarProperty Name="KH_SoDienThoai" ColumnName="KH_SoDienThoai" />
+                <ScalarProperty Name="KH_GioiTinh" ColumnName="KH_GioiTinh" />
+                <ScalarProperty Name="KH_email" ColumnName="KH_email" />
+                <ScalarProperty Name="KH_CMND" ColumnName="KH_CMND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIHINHDULICHes">
+            <EntityTypeMapping TypeName="QuanlyTourModel.LOAIHINHDULICH">
+              <MappingFragment StoreEntitySet="LOAIHINHDULICH">
+                <ScalarProperty Name="MaLoaiHinh" ColumnName="MaLoaiHinh" />
+                <ScalarProperty Name="TenLoaiHinh" ColumnName="TenLoaiHinh" />
+                <ScalarProperty Name="LH_MoTa" ColumnName="LH_MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="QuanlyTourModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="TenNv" ColumnName="TenNv" />
+                <ScalarProperty Name="NV_NgaySinh" ColumnName="NV_NgaySinh" />
+                <ScalarProperty Name="NV_SoDienThoai" ColumnName="NV_SoDienThoai" />
+                <ScalarProperty Name="NV_NhiemVu" ColumnName="NV_NhiemVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanlyTourModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOURDULICHes">
+            <EntityTypeMapping TypeName="QuanlyTourModel.TOURDULICH">
+              <MappingFragment StoreEntitySet="TOURDULICH">
+                <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+                <ScalarProperty Name="TenTour" ColumnName="TenTour" />
+                <ScalarProperty Name="DacDiem" ColumnName="DacDiem" />
+                <ScalarProperty Name="IDGiaTour" ColumnName="IDGiaTour" />
+                <ScalarProperty Name="MaDOANDL" ColumnName="MaDOANDL" />
+                <ScalarProperty Name="MaLoaiHinh" ColumnName="MaLoaiHinh" />
+                <ScalarProperty Name="MaDiaDiem" ColumnName="MaDiaDiem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

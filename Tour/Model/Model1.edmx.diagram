@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="217fc66f3e874be38c9dbc62a24f992d" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanlyTourModel.CHIPHI" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.CHITIET" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.DIADIEM" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.DOANDL" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.GIATOUR" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.KHACHHANG" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.LOAIHINHDULICH" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.NHANVIEN" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanlyTourModel.TOURDULICH" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaDiaDiem_chitiet" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaTour_chitiet" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaDiaDiem" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaKhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaNhanVien" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaTour" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_IDGIATOUR" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanlyTourModel.fk_MaLoaiHinh" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

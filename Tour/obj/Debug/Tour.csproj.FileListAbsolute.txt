@@ -1,0 +1,16 @@
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\Tour.exe.config
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\Tour.exe
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\Tour.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\EntityFramework.dll
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\EntityFramework.xml
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.csprojResolveAssemblyReference.cache
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.Form1.resources
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.Properties.Resources.resources
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.csproj.GenerateResource.Cache
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.exe
+c:\users\administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.pdb
+C:\Users\Administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.AddnewTour.resources
+C:\Users\Administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.DetailForm.resources
+C:\Users\Administrator\documents\visual studio 2015\Projects\Tour\Tour\obj\Debug\Tour.EditFormTour.resources
